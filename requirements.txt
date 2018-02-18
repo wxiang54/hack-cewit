@@ -1,0 +1,5 @@
+flask
+pysqlite
+flask-debugtoolbar
+nameparser
+requests

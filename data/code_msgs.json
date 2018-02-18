@@ -1,0 +1,15 @@
+{
+    "register": {
+	"0": "Registration successful.",
+	"1": "This email has already been used to create an account."
+    },
+
+    "login": {
+	"0": "Login successful.",
+	"1": "Credentials were invalid. Please try again."
+    },
+
+    "logout": {
+	"0": "???"
+    }
+}
