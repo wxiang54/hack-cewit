@@ -6,7 +6,7 @@ if __name__ == "__main__" or __name__ == "apiUtils":
     PATH_CLIENT_SECRET = "../data/client_secret.json"
 else:
 '''
-PATH_CLIENT_SECRET = "data/client_secret.json"
+PATH_CLIENT_SECRET = "/var/www/ghostwallet/ghostwallet/data/client_secret.json"
     
 def request_token():
     f = open(PATH_CLIENT_SECRET, 'rb').read()

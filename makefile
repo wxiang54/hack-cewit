@@ -2,7 +2,11 @@ install:
 	pip install -r requirements.txt
 
 setup: install
-	python utils/dbUtils.py
+	sudo chgrp www-data ghostwallet/data
+	sudo chmod g+w ghostwallet/data	
+	sudo python ghostwallet/utils/dbUtils.py
+	sudo chgrp www-data ghostwallet/data/db.db
+	sudo chmod g+w ghostwallet/data/db.db
 
-run: app.py
-	python app.py
+run: __init__.py
+	python __init__.py

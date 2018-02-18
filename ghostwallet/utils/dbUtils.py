@@ -2,6 +2,7 @@ import sqlite3, csv, time, json, random
 from pprint import pprint
 from nameparser import HumanName
 import apiUtils
+import os.path
 '''
 if __name__ == "__main__":
     db_url = "../data/db.db"
@@ -9,9 +10,10 @@ if __name__ == "__main__":
     cc_url = "../data/fake_credit_cards.json"
 else:
 '''
-db_url = "data/db.db"
-schema_url = "data/db_schema.json"
-cc_url = "data/fake_credit_cards.json"
+base_url = "/var/www/ghostwallet/ghostwallet/"
+db_url = base_url + "data/db.db"
+schema_url = base_url + "data/db_schema.json"
+cc_url = base_url + "data/fake_credit_cards.json"
     
 conn = sqlite3.connect(db_url, check_same_thread=False)
 conn.row_factory = sqlite3.Row
