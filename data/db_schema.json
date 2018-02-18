@@ -1,5 +1,5 @@
 {
-    "user": "CREATE TABLE user (id INTEGER PRIMARY KEY NOT NULL, fullname VARCHAR(100) NOT NULL, displayname varchar(50) NOT NULL, password VARCHAR(128) NOT NULL, salt VARCHAR(32) NOT NULL, email VARCHAR(320) UNIQUE NOT NULL, time_joined INTEGER NOT NULL);",
+    "user": "CREATE TABLE user (id INTEGER PRIMARY KEY NOT NULL, fullname VARCHAR(100) NOT NULL, displayname varchar(50) NOT NULL, password VARCHAR(128) NOT NULL, salt VARCHAR(32) NOT NULL, email VARCHAR(320) UNIQUE NOT NULL, cc_token TEXT UNIQUE, time_joined INTEGER NOT NULL);",
 
-    "vcard" : "CREATE TABLE cart (id INTEGER PRIMARY KEY NOT NULL, time_added INTEGER NOT NULL, FOREIGN KEY(user_id) REFERENCES user(id) NOT NULL, referenceID TEXT NOT NULL, name TEXT NOT NULL);"
+    "vcard" : "CREATE TABLE vcard (id INTEGER PRIMARY KEY NOT NULL, user_email VARCHAR(320) UNIQUE, referenceID VARCHAR(16), time_added INTEGER NOT NULL, name TEXT, money_limit FLOAT, money_used FLOAT, FOREIGN KEY(user_email) REFERENCES user(email));"
 }

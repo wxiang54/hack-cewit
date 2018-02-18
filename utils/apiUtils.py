@@ -1,11 +1,13 @@
 import requests, json
 from pprint import pprint
 
-if __name__ == "__main__":
+'''
+if __name__ == "__main__" or __name__ == "apiUtils":
     PATH_CLIENT_SECRET = "../data/client_secret.json"
 else:
-    PATH_CLIENT_SECRET = "data/client_secret.json"
-
+'''
+PATH_CLIENT_SECRET = "data/client_secret.json"
+    
 def request_token():
     f = open(PATH_CLIENT_SECRET, 'rb').read()
     creds_json = json.loads(f)["web"]
@@ -72,14 +74,45 @@ def get_response_msg(response):
             return response["ModelState"][next(iter(response["ModelState"]))][0]
     #raise Exception("Can't find a message")
     return ""
+
+#helper for fxn in dbUtils
+def get_vcards_by_email_H(refID, access_token):
+    url = 'https://hack.softheon.io/api/payments/v1/creditcards?referenceId={}'.format(refID)
+    headers = {'Content-type': 'application/json',
+               'Authorization': 'Bearer ' + access_token}
+    r = requests.get(url=url, headers=headers)
+    return r.json()[0]
+
+def get_vcard_by_refID(refID):
+    url = 'https://hack.softheon.io/api/payments/v1/creditcards?referenceId={}'.format(refID)
+    headers = {'Content-type': 'application/json',
+               'Authorization': 'Bearer ' + request_token()}
+    r = requests.get(url=url, headers=headers)
+    return r.json()[0]
+
+def charge_card_by_token(token, amt):
+    url = 'https://hack.softheon.io/api/payments/v1/payments'
+    headers = {'content-type': 'application/json',
+               'Authorization': 'Bearer ' + request_token()}
+    payload = {
+        "paymentAmount": amt,
+        "description": "Charge for new VCard",
+        #"referenceId": "example_payment",
+        "paymentMethod": {
+            "paymentToken": token,
+            "type": "Credit Card"
+        }}
+    r = requests.post(url=url, headers=headers, data=payload)
+    return r.json()
     
+
 if __name__ == "__main__":
     ccrm = '''
 {
     "cardNumber": "4134185779995000",
     "securityCode": "123",
     "expirationMonth": 11,
-    "expirationYear": 2017,
+    "expirationYear": 2020,
     "cardHolderName": "John Doe",
     "billingAddress": {
         "address1": "1500 Stony Brook Road",
