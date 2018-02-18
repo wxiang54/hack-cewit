@@ -1,5 +1,6 @@
 flask
-pysqlite
 flask-debugtoolbar
+flask-restful
+pysqlite
 nameparser
 requests

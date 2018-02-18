@@ -7,7 +7,7 @@ SUCESS CODE: 0
 ERROR CODES:
  * 1: email taken
 '''
-def add_user(fullname, email, password, rpassword):
+def add_user(fullname, email, password):
     #limit password length to ~1024 for hmac
     #also maybe email verification would be nice
     if dbUtils.user_in_db(email):
